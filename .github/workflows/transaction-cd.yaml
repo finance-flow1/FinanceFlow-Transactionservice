@@ -1,0 +1,23 @@
+name: Transaction_CD
+
+on:
+  workflow_run:
+    workflows:
+      - Transaction_CI
+    types:
+      - completed
+    branches:
+      - main
+      - dev
+
+jobs:
+  cd:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    uses: finance-flow1/CI-CD-Templates/.github/workflows/common-cd.yml@main
+    with:
+      service-name: financeflow-transactionservice
+      ci-workflow-name: Transaction_CI
+    secrets:
+      APP_ID: ${{ secrets.APP_ID }}
+      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
+      MANIFEST_REPO: ${{ secrets.MANIFEST_REPO }}
