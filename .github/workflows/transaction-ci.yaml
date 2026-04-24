@@ -7,7 +7,7 @@ on:
       - dev
     paths:
       - "**"
-      - ".github/workflows/transaction-ci.yml"
+      - ".github/workflows/transaction-ci.yaml"
 
   pull_request:
     branches:
@@ -15,7 +15,11 @@ on:
       - dev
     paths:
       - "**"
-      - ".github/workflows/transaction-ci.yml"
+      - ".github/workflows/transaction-ci.yaml"
+
+permissions:
+  contents: write
+  packages: write
 
 jobs:
   ci:
@@ -23,7 +27,7 @@ jobs:
     with:
       working_directory: .
       image_name: financeflow-transactionservice
-      run_build: true
+      run_build: false
       docker_context: .
       dockerfile_path: Dockerfile
       service-name: financeflow-transactionservice
