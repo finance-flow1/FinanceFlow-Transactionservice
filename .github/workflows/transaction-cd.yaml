@@ -15,7 +15,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     uses: finance-flow1/CI-CD-Templates/.github/workflows/common-cd.yml@main
     with:
-      service-name: financeflow-transactionservice
+      service-name: transaction-service
       ci-workflow-name: Transaction_CI
     secrets:
       APP_ID: ${{ secrets.APP_ID }}
